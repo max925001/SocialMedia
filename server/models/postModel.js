@@ -1,0 +1,45 @@
+import mongoose, { Schema } from "mongoose";
+
+const postSchema = new Schema({
+
+
+username:{
+    type:String,
+    required:true
+
+},
+
+title:{
+    type:String,
+
+},
+image:{
+    type:String,
+    required:true,
+
+},
+creater:{
+    type:Schema.Types.ObjectId,
+    ref:"User",
+},
+likes:[{
+    type:Schema.Types.ObjectId,
+    ref:"Post",
+    
+}],
+date:{
+    type:Date,
+    default:Date.now
+}
+
+
+
+
+
+},{timestamps:true})
+
+
+
+const Post = mongoose.model("Post" ,postSchema)
+
+export default Post
