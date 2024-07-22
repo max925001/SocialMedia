@@ -19,7 +19,7 @@ const handleinput = (e) =>{
 
 
 const {name ,value} = e.target
-console.log(name,value)
+
 
 setLogindata({...logindata ,
   [name]:value
@@ -34,7 +34,7 @@ setLogindata({...logindata ,
 const handleSubmit = async (e) =>{
 
 e.preventDefault()
-console.log("hello")
+
 
 if(!logindata.username || !logindata.password){
 
@@ -51,7 +51,7 @@ formData.append("password", logindata.password)
 
 try {
   const response = await dispatch(login(logindata));
-  // console.log(response);
+  
   if (response.payload.success) {
    
     nagivate('/')

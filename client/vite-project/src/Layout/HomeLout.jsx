@@ -2,7 +2,7 @@ import React from 'react'
 import Footer from '../components/Footer'
 import { IoReorderThree } from "react-icons/io5";
 import {AiFillCloseCircle} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaHome } from "react-icons/fa";
 import { IoLogoTiktok } from "react-icons/io5";
 import { FaFacebookMessenger } from "react-icons/fa6";
@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineLogout } from "react-icons/ai";
 import { logout } from '../Redux/Slice/AuthSlice';
 function HomeLout({children}) {
+  const navigate = useNavigate()
  const authslice = useSelector((state) =>state.auth)
  const dispatch = useDispatch()
 
@@ -79,7 +80,7 @@ if(res?. payload?. success)
       <li><Link to='/saved'><MdSaveAlt className='text-white  m-2'/>Saved</Link></li>
       
       
-      <li><Link>{authslice.isLoggedIn ? <img src={authslice.data.avatar} className='w-9 h-9 rounded-full'/>:<HiUserCircle className='text-white text-3xl m-2'/>} Profile</Link></li>
+      <li><Link to='/getprofile'>{authslice.isLoggedIn ? <img src={authslice.data.avatar} className='w-9 h-9 rounded-full'/>:<HiUserCircle className='text-white text-3xl m-2'/>} Profile</Link></li>
 
       <div className='w-full h-40  absolute bottom-0 left-0 flex flex-col  '>
 

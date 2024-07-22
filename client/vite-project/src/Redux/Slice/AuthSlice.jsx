@@ -71,7 +71,7 @@ export const logout =createAsyncThunk("/auth/logout" ,async() =>{
 try {
   
   const res =  axiosInstance.post("/user/logout")
-  console.log("rea",res)
+  
   toast.promise(res,{
 
 loading:"Please wait logout is in progress",
@@ -96,6 +96,10 @@ error: "Failed to Logout"
 
 
 
+
+
+
+
     export const authSlice = createSlice({
       name:"auth",
       initialState,
@@ -105,7 +109,7 @@ extraReducers: (builder) =>{
 builder.addCase(login.fulfilled,(state,action) =>{
 
 
-console.log(action)
+
   localStorage.setItem("data" , JSON.stringify(action?. payload?.data))
   localStorage.setItem("isLoggedIn" ,true)
  
