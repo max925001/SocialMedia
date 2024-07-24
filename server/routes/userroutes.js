@@ -26,4 +26,5 @@ router.get('/getuser', isLogin ,getUser)
 router.put('/editdetails',isLogin ,editUserDetails)
 
 
+
 export default router

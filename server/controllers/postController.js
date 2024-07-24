@@ -62,12 +62,6 @@ res.status(200).json(
 }
 
 
-
-
-
-
-
-
 }
 
 
@@ -80,14 +74,14 @@ const posts = await Post.find({creater:userId})
 if(!posts){
 
 
-    throw new AppError(400,"Post is not created")
+    throw new AppError(400,"Post not get")
 
 }
 
 
 res.status(200).json(
 
-    new ApiResponse(200,posts ,"Post created successfully")
+    new ApiResponse(200,posts ,"Post get successfully")
 )
 
 
