@@ -36,7 +36,7 @@ const [page,setpage] =useState(1)
   },[handleInfiniteScroll])
   return (
     <HomeLout>
-            <div className=' w-full  p-2 '>
+            <div className=' w-full  p-2 '> 
 
                <div className='w-full  m-auto bg-red  grid grid-cols-1  sm:grid-cols-1  md:grid-cols-3 gap-2 overflow-hidden border border-red-400 '>
 

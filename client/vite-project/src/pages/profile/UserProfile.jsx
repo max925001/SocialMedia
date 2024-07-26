@@ -8,6 +8,10 @@ import { MdSaveAlt } from "react-icons/md";
 import { NavLink, Outlet } from 'react-router-dom';
 function UserProfile() {
 const userdata = useSelector((state)=>state.auth.data)
+const post = useSelector((state) =>state?.post?.post?.data)
+
+
+
 const isLoggedIn= useSelector((state) =>state.auth.isLoggedIn)
 
 console.log(userdata)
@@ -47,7 +51,7 @@ console.log(isLoggedIn)
   </div>
   
 <div className='grid grid-cols-3 justify-around'>
-  <h2 className='text-white text-lg  font-bold md:text-xl'>Posts:{isLoggedIn?userdata.post.length:0}</h2>
+  <h2 className='text-white text-lg  font-bold md:text-xl'>Posts:{isLoggedIn?post?.length:0}</h2>
   <h2 className='text-white text-lg   font-bold md:text-xl'>Followers:0</h2>
   <h2 className='text-white  text-lg  font-bold md:text-xl'>Following:0</h2>
 </div>
