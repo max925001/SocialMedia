@@ -98,7 +98,8 @@ userSchema.methods ={
                 id: this._id ,email: this.email,
                 fullname: this.fullname,
                 phone_no: this.phone_no,
-                username:this.username
+                username:this.username,
+                avatar:this.avatar
             },
             process.env.JWT_SECRET,
             {

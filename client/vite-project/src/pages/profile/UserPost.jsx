@@ -6,6 +6,8 @@ import { FaComment, FaHeart, FaSave, FaTrash } from 'react-icons/fa'
 function UserPost() {
   const dispatch = useDispatch()
   const post = useSelector((state) =>state.post.post)
+  const isLoggedIn = useSelector((state) =>state.auth.isLoggedIn )
+  console.log(isLoggedIn)
   console.log("userpost" ,post)
 
 
@@ -15,7 +17,10 @@ function UserPost() {
     await dispatch(getpost())
   }
   useEffect(()=>{
+    
+     if(isLoggedIn){
       getuserPost()
+     }
   },[])
   return (
     <div className='w-full md:w-2/3  m-auto'>
@@ -28,7 +33,7 @@ post?.data?.map((data) =>(
 
   <div className="max-w-sm w-full rounded overflow-hidden shadow-lg m-auto bg-gray-800 hover:bg-gray-700 hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer">
       <div className="relative">
-        <img className="w-full h-64 object-cover" src={data.image} alt="Card Image" />
+        <img className="w-full h-64 object-contain" src={data.image} alt="Card Image" />
         <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 flex justify-between items-center">
           <div className="text-white flex items-center space-x-2">
             <FaHeart className="text-red-500 hover:text-red-400 transition duration-300" />

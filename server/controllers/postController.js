@@ -12,6 +12,8 @@ import User from "../models/userSchema.js";
 const createPost = async(req, res,next) =>{
 const {title} = req.body
 const username = req.user.username
+const avatar = req.user.avatar
+console.log(avatar)
 const user = await User.findOne({username})
 if(!username){
 
@@ -37,6 +39,7 @@ try {
     const post = await Post.create({
         username,
         title,
+        avatar,
         image:image.url || "",
         creater:req.user.id,
        
@@ -156,4 +159,43 @@ res.status(200).json(
 
 
 
-export {createPost ,getmypost ,like ,unlike }
+
+const getallpost = async(req,res) =>{
+
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 9;
+    const skip = (page - 1) * limit;
+  
+    try {
+        const posts = await Post.find().skip(skip).limit(limit).sort({ _id: 1 });
+      res.status(200).json(posts);
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching posts' });
+    }
+
+
+}
+
+
+
+
+// const getallpost = async (req,res) =>{
+
+// const post =  await Post.find({})
+
+// if(!post){
+
+//     throw new AppError(400,"Post not get")
+// }
+
+// res.status(200).json(
+
+//     new ApiResponse(200,post ,"Post get successfully")
+// )
+
+
+// }
+
+
+export {createPost ,getmypost ,like ,unlike,getallpost }

@@ -8,6 +8,9 @@ username:{
     required:true
 
 },
+avatar:{
+    type:String,
+},
 
 title:{
     type:String,
@@ -26,6 +29,10 @@ likes:[{
     type:Schema.Types.ObjectId,
     ref:"Post",
     
+}],
+comments:[{
+    type:Schema.Types.ObjectId,
+    ref:"Comments",
 }],
 date:{
     type:Date,

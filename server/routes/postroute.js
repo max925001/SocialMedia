@@ -1,5 +1,5 @@
 import express, { Router } from 'express'
-import { createPost, getmypost, like, unlike,   } from '../controllers/postController.js'
+import { createPost, getallpost, getmypost, like, unlike,   } from '../controllers/postController.js'
 import { upload } from '../middleware/multer.Middleware.js'
 import { isLogin } from '../middleware/auth.Middleware.js'
 
@@ -14,6 +14,7 @@ postrouter.post('/create', isLogin, upload.single("image"), createPost)
 postrouter.get('/getmypost', isLogin,getmypost)
 postrouter.put("/like/:id" ,isLogin,like)
 postrouter.put("/unlike/:id" ,isLogin,unlike)
+postrouter.get("/getallpost",getallpost)
 
 
 export default postrouter
