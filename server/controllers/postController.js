@@ -94,30 +94,51 @@ const like = async(req,res) =>{
 
 
 const {id} = req.params
-
+console.log(id)
 
 
 
 const userId = req.user.id;
+console.log(userId)
 
 
-const post = await Post.findByIdAndUpdate(id,{
+if(!userId){
 
-    $push:{likes:userId}
-},{
-    new:true
-})
+ throw new AppError(400,"Please login first")
+}
+
+
+
+try {
+    const post = await Post.findById(id)
 
 if(!post){
 
-    throw new AppError(400,"Post is not created")
+    throw new AppError(400,"Post not found")
 }
 
-res.status(200).json(
+    if(!post.likes.includes(userId)){
+        post.likeCount +=1
+       post.likes.push(userId)
+       
+       await post.save()
+       
+       res.status(200).json(
+       
+           new ApiResponse(200,post ,"Like  successfully")
+       )
+       
+       
+       
+       }else{
+       
+          new ApiResponse(400 ,post ,'user already like the post')
 
-    new ApiResponse(200,post ,"Like  successfully")
-)
+       }
 
+} catch (error) {
+    console.log(error)
+}
 
 
 }
@@ -127,8 +148,6 @@ const unlike = async(req,res) =>{
 const {id} = req.params
 
 
-
-
 const userId = req.user.id;
 if(!userId){
 
@@ -136,24 +155,31 @@ if(!userId){
 }
 
 
-const post = await Post.findByIdAndUpdate(id,{
-
-    $pull:{likes:userId}
-},{
-    new:true
-})
+try {
+    const post = await Post.findById(id)
 
 if(!post){
-
-    throw new AppError(400,"Post is not like ")
+    throw new AppError(400,"Post not found")
 }
 
-res.status(200).json(
-
-    new ApiResponse(200,post ,"unLike  successfully")
-)
-
-
+    if(post.likes.includes(userId)){
+        post.likeCount -=1
+       post.likes =post.likes.filter(user => user != userId)
+       
+       await post.save()
+       
+       res.status(200).json(
+       
+           new ApiResponse(200,post ,"unlike  successfully")
+       )
+    }else {
+        res.status(400).json({ message: 'User has not liked this post' });
+      }
+    
+} catch (error) {
+    console.log(error)
+    
+}
 
 }
 

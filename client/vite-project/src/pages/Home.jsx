@@ -9,9 +9,10 @@ const [page,setpage] =useState(1)
   const dispatch = useDispatch()
   const allpost = useSelector((state) =>state.post.Allpost)
   const hasMore = useSelector((state) => state.post.hasMore);
-  console.log("hasmore" ,hasMore)
   const status = useSelector((state) => state.post.status);
- console.log(allpost)
+ 
+ 
+ console.log("all",allpost)
   useEffect(() =>{
 
     if (hasMore) {
@@ -42,7 +43,7 @@ const [page,setpage] =useState(1)
 
               {
 allpost.map((post) =>
-( <ResponsiveCard post={post}/>)
+( <ResponsiveCard post={post} key={post._id}/>)
 )
 
 

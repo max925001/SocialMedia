@@ -7,14 +7,15 @@ const initialState ={
     Allpost :[],
     hasMore: true,
     status: null,
-    error: null
+    error: null,
+    likeCount:0
 }
 
 
 
 export const  getpost = createAsyncThunk("/post/get" , async() =>{
 
-   const res =axiosInstance("/post/getmypost" )
+   const res =axiosInstance.get("/post/getmypost" )
 
    return (await res).data
 
@@ -22,7 +23,7 @@ export const  getpost = createAsyncThunk("/post/get" , async() =>{
 
 export const getAllPost = createAsyncThunk("/post/all" ,async(page) =>{
 
-    const res = axiosInstance('/post/getallpost', {
+    const res = axiosInstance.get('/post/getallpost', {
         params: { page, limit: 9 },
       })
       toast.promise(res,{
@@ -39,7 +40,40 @@ export const getAllPost = createAsyncThunk("/post/all" ,async(page) =>{
 }) 
 
 
+export const likes = createAsyncThunk("/post/like" ,async(data) =>{
 
+  console.log(data)
+    const res = axiosInstance.post(`/post/like/${data}`)
+    console.log(res)
+toast.promise(res,{
+
+    loading:"Please wait like is in progress",
+    success: (data) =>{
+      return data?.data?.message 
+    },
+    error: "Failed to Like"
+  
+})
+    return (await res).data
+})
+
+
+export const unlikes = createAsyncThunk("/post/unlike" ,async(data) =>{
+
+  console.log(data)
+    const res = axiosInstance.post(`/post/unlike/${data}`)
+    console.log(res)
+toast.promise(res,{
+
+    loading:"Please wait unlike is in progress",
+    success: (data) =>{
+      return data?.data?.message 
+    },
+    error: "Failed to unLike"
+  
+})
+    return (await res).data
+})
 
 
 
@@ -75,6 +109,16 @@ state.status = "success"
     state.status = "failed"
     state.error =action.payload
 
+})
+.addCase(likes.fulfilled,(state,action) =>{
+  console.log("couun",action?.payload?.data?.likeCount)
+
+state.likeCount = action?.payload?.data?.likeCount
+
+})
+.addCase(unlikes.fulfilled,(state,action) =>{
+
+state.likeCount = action?.payload?.data?.likeCount
 })
 
 }

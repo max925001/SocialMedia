@@ -25,6 +25,10 @@ creater:{
     type:Schema.Types.ObjectId,
     ref:"User",
 },
+likeCount:{
+    type:Number,
+    default:0
+},
 likes:[{
     type:Schema.Types.ObjectId,
     ref:"Post",

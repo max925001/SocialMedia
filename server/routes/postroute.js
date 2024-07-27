@@ -12,8 +12,8 @@ const postrouter = Router()
 
 postrouter.post('/create', isLogin, upload.single("image"), createPost)
 postrouter.get('/getmypost', isLogin,getmypost)
-postrouter.put("/like/:id" ,isLogin,like)
-postrouter.put("/unlike/:id" ,isLogin,unlike)
+postrouter.post("/like/:id" ,isLogin,like)
+postrouter.post("/unlike/:id" ,isLogin,unlike)
 postrouter.get("/getallpost",getallpost)
 
 
