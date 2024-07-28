@@ -71,16 +71,16 @@ if(res?. payload?. success)
           <AiFillCloseCircle size={24}/>
         </button>
       </li>
-      <li><Link to='/' >  <FaHome className='text-white m-2'/> Home</Link></li>
-<li><Link><IoMdSearch className='text-white m-2'/>Search</Link></li>
-<li><Link> <IoLogoTiktok className='text-white  m-2'/> Reels</Link></li>
-<li><Link> <FaFacebookMessenger className='text-white  m-2'/> Messages</Link></li>
+      <li><Link to='/' >  <FaHome className='text-white m-2 text-3xl'/> Home</Link></li>
+<li><Link><IoMdSearch className='text-white m-2 text-3xl'/>Search</Link></li>
+<li><Link> <IoLogoTiktok className='text-white  m-2 text-3xl'/> Reels</Link></li>
+<li><Link> <FaFacebookMessenger className='text-white  m-2 text-3xl'/> Messages</Link></li>
 
      
-      <li><Link to='/saved'><MdSaveAlt className='text-white  m-2'/>Saved</Link></li>
+      <li><Link to='/saved'><MdSaveAlt className='text-white  m-2 text-3xl'/>Saved</Link></li>
       
       
-      <li><Link to='/getprofile'>{authslice.isLoggedIn ? <img src={authslice.data.avatar} className='w-9 h-9 rounded-full'/>:<HiUserCircle className='text-white text-3xl m-2'/>} Profile</Link></li>
+      <li><Link to='/getprofile'>{authslice.isLoggedIn ? <img src={authslice.data.avatar} className='w-9 h-9 rounded-full'/>:<HiUserCircle className='text-white text-4xl m-2'/>} Profile</Link></li>
 
       <div className='w-full h-40  absolute bottom-0 left-0 flex flex-col  '>
 
