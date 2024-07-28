@@ -1,6 +1,6 @@
 import express, { Router } from 'express'
 import { createPost, getallpost, getmypost, like, unlike,   } from '../controllers/postController.js'
-import { upload } from '../middleware/multer.Middleware.js'
+import  upload  from '../middleware/multer.Middleware.js'
 import { isLogin } from '../middleware/auth.Middleware.js'
 
 
