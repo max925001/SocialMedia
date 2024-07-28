@@ -12,7 +12,7 @@ const [page,setpage] =useState(1)
   const status = useSelector((state) => state.post.status);
  
  
- console.log("all",allpost)
+
   useEffect(() =>{
 
     if (hasMore) {

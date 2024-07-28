@@ -97,7 +97,7 @@ state.post = []
     state.status = "loading"
 })
 .addCase(getAllPost.fulfilled,(state,action) =>{
-    console.log("lenght",action.payload.length)
+   
     if (action.payload.length == 0) {
         state.hasMore = false;
       }

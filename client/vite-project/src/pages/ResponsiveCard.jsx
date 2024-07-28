@@ -11,17 +11,21 @@ const ResponsiveCard = ({ post }) => {
   const [likeCount ,setLikeCount] =useState(post?.likes?.length)
   const dispatch = useDispatch()
   const [likeColor, setLikeColor] = useState('text-white');
-console.log("color",likeColor)
+
  const likedByuser = post.likes.includes(userId) ? true : false;
-  const handleLike = (postId) => {
+  const handleLike =  async (postId) => {
+    console.log("userid",userId)
+    
 if(isLoggedIn && likeColor =='text-white'){
-dispatch(likes(postId))
+ await dispatch(likes(postId))
 setLikeColor('text-green-500')
 setLikeCount(likeCount+1)
+console.log("liked")
 }else if(isLoggedIn && likeColor =='text-green-500'){
   dispatch(unlikes(postId))
   setLikeColor('text-white')
   setLikeCount(likeCount-1)
+  console.log("unliked")
 }
 
 
